@@ -10,22 +10,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_09_132808) do
+ActiveRecord::Schema.define(version: 2021_03_08_181029) do
 
   create_table "strains", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-  end
-
-  create_table "strains_wines", force: :cascade do |t|
-    t.integer "strain_id"
-    t.integer "wine_id"
-    t.integer "percent"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["strain_id"], name: "index_strains_wines_on_strain_id"
-    t.index ["wine_id"], name: "index_strains_wines_on_wine_id"
   end
 
   create_table "wines", force: :cascade do |t|

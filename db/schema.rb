@@ -10,7 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 2021_03_08_181029) do
+=======
+ActiveRecord::Schema.define(version: 2021_03_09_133409) do
+>>>>>>> newtable
 
   create_table "strains", force: :cascade do |t|
     t.string "name"
@@ -18,6 +22,19 @@ ActiveRecord::Schema.define(version: 2021_03_08_181029) do
     t.datetime "updated_at", null: false
   end
 
+<<<<<<< HEAD
+=======
+  create_table "wine_strains", force: :cascade do |t|
+    t.integer "strain_id"
+    t.integer "wine_id"
+    t.integer "percent"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["strain_id"], name: "index_wine_strains_on_strain_id"
+    t.index ["wine_id"], name: "index_wine_strains_on_wine_id"
+  end
+
+>>>>>>> newtable
   create_table "wines", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false

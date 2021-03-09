@@ -1,16 +1,31 @@
 <div class="jumbotron">
        <h1 class="text-center mb-5">Registro de cata de vinos</h1>
        <div class="container">
+              
               <%= form_with(model: @wine, local: true) do |f| %>
                      <div class="my-3">
                             <%= f.label :name %> <br>
                             <%= f.text_field :name %>
                      </div>
                      <%if @strains.count > 0 %>
-                            <div>
-                                   <%= f.label "Listado de cepas" %> <br>
-                                   <%= collection_check_boxes(:wine, :strain_ids, @strains, :id, :name) %>
-                            </div>
+                            <p class="my-3">Solo ingresa los porcentajes de los campos seleccionados</p>
+                            <% @strains.each do |strain|%>
+                                   <div>
+                                          <%= check_box(:wine, :strain_ids, {multiple: true}, strain.id, nil) %>
+                                          <span> <%= strain.name %> </span>
+                                   </div>
+                                   <div class="ml-5 mb-3">
+                                          <p class="d-inline">%</p>
+                                          <input
+                                                 type="number"
+                                                 name="wine[strain_percent][]"
+                                                 id="wine_strain_percent_<%= strain.id %>"
+                                                 min="0"
+                                                 max="100"
+                                                 step="5"
+                                          >
+                                   </div>
+                            <%end%>
                      <%else%>
                             <h5>No hay cepas disponibles</h5>
                      <%end%>
@@ -26,8 +41,9 @@
        <table class="table">
               <thead class="thead-light">
                      <th>Nombre</th>
-                     <th>Cepas</th>
+                     <th>Cepa | porcentaje </th>
               </thead>
+<<<<<<< HEAD
               <% if @wines.count > 0 %>
                      <tbody>
                             <% @wines.each do |wine|%>
@@ -46,5 +62,21 @@
               <%else%>
                      <h3 class="text-center">No hay vinos registrados</h3>
               <%end%>
+=======
+              <tbody>
+                     <% @wines.each do |wine|%>
+                            <tr>
+                                   <td> <%= wine.name %> </td>
+                                   <td>
+                                          <ul>
+                                          <% wine.wine_strains.each do |wine_strain| %>
+                                                 <li><%= wine_strain.strain.name %> (<%= wine_strain.percent %>%) </li>
+                                          <%end%>
+                                          </ul>
+                                   </td>
+                            </tr>
+                     <%end%>
+              </tbody>
+>>>>>>> newtable
        </table>
 </div>

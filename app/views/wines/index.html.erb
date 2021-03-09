@@ -28,19 +28,23 @@
                      <th>Nombre</th>
                      <th>Cepas</th>
               </thead>
-              <tbody>
-                     <% @wines.each do |wine|%>
-                            <tr>
-                                   <td> <%= wine.name %> </td>
-                                   <td>
-                                          <ul>
-                                          <% wine.strains.each do |strain| %>
-                                                 <li><%= strain.name %></li>
-                                          <%end%>
-                                          </ul>
-                                   </td>
-                            </tr>
-                     <%end%>
-              </tbody>
+              <% if @wines.count > 0 %>
+                     <tbody>
+                            <% @wines.each do |wine|%>
+                                   <tr>
+                                          <td> <%= wine.name %> </td>
+                                          <td>
+                                                 <ul>
+                                                 <% wine.strains.each do |strain| %>
+                                                        <li><%= strain.name %></li>
+                                                 <%end%>
+                                                 </ul>
+                                          </td>
+                                   </tr>
+                            <%end%>
+                     </tbody>
+              <%else%>
+                     <h3 class="text-center">No hay vinos registrados</h3>
+              <%end%>
        </table>
 </div>

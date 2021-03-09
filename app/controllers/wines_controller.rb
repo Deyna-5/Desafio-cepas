@@ -10,10 +10,10 @@ class WinesController < ApplicationController
               @wine = Wine.new(wine_params) #Crea instancia del vino
 
               strain_ids = params[:wine][:strain_ids] #Recupera el array de aids de cepas
-              strain_ids.delete("") #Limpia el array
+              strain_ids.delete("") unless strain_ids.nil? #Limpia el array
 
               strain_percents = params[:wine][:strain_percent] #recupera el array de porcentajes de cepas
-              strain_percents.delete("") #Limpia el array
+              strain_percents.delete("") unless strain_percents.nil? #Limpia el array
 
               if @wine.save
                      strain_ids.length.times do |i| #Recorrro n veces el array de ids que tiene el mismo largo que el de porcentajes
@@ -30,8 +30,8 @@ class WinesController < ApplicationController
        end
 
        private
-       def wine_params
-              params.require(:wine).permit(:name)
-       end
+              def wine_params
+                     params.require(:wine).permit(:name)
+              end
 
 end

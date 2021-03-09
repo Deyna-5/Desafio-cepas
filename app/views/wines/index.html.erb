@@ -41,8 +41,7 @@
        <table class="table">
               <thead class="thead-light">
                      <th>Nombre</th>
-                     <th>Cepas</th>
-                     <th>Porcentaje</th>
+                     <th>Cepa | porcentaje </th>
               </thead>
               <tbody>
                      <% @wines.each do |wine|%>
@@ -50,14 +49,9 @@
                                    <td> <%= wine.name %> </td>
                                    <td>
                                           <ul>
-                                          <% wine.strains.each do |strain| %>
-                                                 <li><%= strain.name %></li>
+                                          <% wine.wine_strains.each do |wine_strain| %>
+                                                 <li><%= wine_strain.strain.name %> (<%= wine_strain.percent %>%) </li>
                                           <%end%>
-                                          </ul>
-                                   </td>
-                                   <td>
-                                          <ul>
-                                                 <li> % </li>
                                           </ul>
                                    </td>
                             </tr>

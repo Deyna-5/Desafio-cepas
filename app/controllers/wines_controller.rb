@@ -1,4 +1,5 @@
 class WinesController < ApplicationController
+       before_action :authenticate_user!
 
        def index
               @wines = Wine.all
@@ -29,9 +30,19 @@ class WinesController < ApplicationController
               end
        end
 
+       def edit
+              @wine = Wine.find(params[:id])
+              @oenologists = Oenologist.all
+       end
+
+       def update
+
+       end
+
        private
               def wine_params
                      params.require(:wine).permit(:name)
               end
+
 
 end

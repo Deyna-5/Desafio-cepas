@@ -25,3 +25,9 @@ Strain.create!(
               }
        ]
 )
+
+User.create(
+       email: "peter@email.com",
+       password: "password",
+       admin: true
+)

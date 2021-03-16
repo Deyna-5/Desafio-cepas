@@ -1,42 +1,4 @@
-<% if current_user.admin == true%>
-       <div class="jumbotron">
-              <h1 class="text-center mb-5">Registro de cata de vinos</h1>
-              <div class="container">
-                     <%= form_with(model: @wine, local: true) do |f| %>
-                            <div class="my-3">
-                                   <%= f.label :name %> <br>
-                                   <%= f.text_field :name %>
-                            </div>
-                            <%if @strains.count > 0 %>
-                                   <p class="my-3">Solo ingresa los porcentajes de los campos seleccionados</p>
-                                   <% @strains.each do |strain|%>
-                                          <div>
-                                                 <%= check_box(:wine, :strain_ids, {multiple: true}, strain.id, nil) %>
-                                                 <span> <%= strain.name %> </span>
-                                          </div>
-                                          <div class="ml-5 mb-3">
-                                                 <p class="d-inline">%</p>
-                                                 <input
-                                                        type="number"
-                                                        name="wine[strain_percent][]"
-                                                        id="wine_strain_percent_<%= strain.id %>"
-                                                        min="0"
-                                                        max="100"
-                                                        step="5"
-                                                 >
-                                          </div>
-                                   <%end%>
-                            <%else%>
-                                   <h5>No hay cepas disponibles</h5>
-                            <%end%>
-                            <div class="my-3">
-                                   <%= f.submit %>
-                            </div>
-                     <%end%>
-              </div>
-              <%= link_to "Agrear un nuevo enologo", new_oenologist_path %>
-       </div>
-<%end%>
+<%= render "form" %>
 
 <div class="container">
        <h2 class="text-center my-5">Tabla de vinos</h2>
@@ -61,7 +23,8 @@
                                    <td>
                                           <ul>
                                                  <% wine.wine_oenologists.each do |wine_oenologist| %>
-                                                        <li> Nombre: <%= wine_oenologist.name %> Puntaje: <%= wine_oenologist.score %> </li>
+                                                        <li> Nombre: <%= wine_oenologist.oenologist.name %> Puntaje: <%= wine_oenologist.score %>  </li>
+                                                        <span> Revista: <%= wine_oenologist.oenologist.magazines.name %> </span>
                                                  <%end%>
                                           </ul>
                                    </td>

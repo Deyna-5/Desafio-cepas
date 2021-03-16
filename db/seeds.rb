@@ -31,3 +31,17 @@ User.create(
        password: "password",
        admin: true
 )
+
+Magazine.create(
+       [
+              {
+                     name: "Magazine #1"
+              },
+              {
+                     name: "Magazine #2"
+              },
+              {
+                     name: "Magazine #3"
+              }
+       ]
+)

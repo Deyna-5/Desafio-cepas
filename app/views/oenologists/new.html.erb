@@ -33,6 +33,14 @@
                             <%= f.check_box :reviewer, value: true %>
                      </div>
 
+                     <div class="mb-5 mt-3">
+                            <h3>Selecciona la revista para la que trabaja</h3>
+                            <% @magazines.each do |magazine| %>
+                                   <p class="d-inline ml-5"> <%= magazine.name %> </p>
+                                   <%= check_box(:oenologist, :magazine_ids, {multiple: true}, magazine.id, nil) %>
+                            <%end%>
+                     </div>
+
                      <div>
                             <%= f.submit "Guardar" %>
                      </div>

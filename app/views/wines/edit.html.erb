@@ -1,3 +1,18 @@
-<h2 class="text-center"> Estas en el edit :) </h2>
+
+<div class="jumbotron text-center">
+
+       <%= form_with(model: @oenologist, local: true) do |f| %>
+              <h3>Asignar Enologo y nota</h3>
+                     <% @oenologists.each do |oenologist| %>
+                            <%= check_box(:wine, :oenologist_ids, {multiple: true}, oenologist.id, nil) %>
+                            <span> <%= oenologist.name %> </span>
+                            <div>
+                                   <span>Score</span>
+                                   <%= f.number_field :score %>
+                            </div>
+                     <%end%>
+              <%= f.submit %>
+       <%end%>
+</div>
 
 <%= link_to "Volver", root_path %>

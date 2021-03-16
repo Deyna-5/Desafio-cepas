@@ -1,7 +1,9 @@
 class OenologistsController < ApplicationController
+       before_action :authenticate_user!
 
        def new
               @oenologist = Oenologist.new
+              @magazines = Magazine.all
        end
 
        def create

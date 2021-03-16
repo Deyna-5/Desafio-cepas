@@ -33,10 +33,17 @@ class WinesController < ApplicationController
        def edit
               @wine = Wine.find(params[:id])
               @oenologists = Oenologist.all
+              @strains = Strain.all
        end
 
        def update
+              @wine = Wine.find(params[:id])
 
+              if @wine.update(wine_oenologists_params)
+                     redirect_to root_path, notice: "Vino actualizado"
+              else
+                     redirect_to root_path, alert: "Ocurrió un error actualizando el vino"
+              end
        end
 
        private
@@ -44,5 +51,7 @@ class WinesController < ApplicationController
                      params.require(:wine).permit(:name)
               end
 
-
+              def wine_oenologists_params
+                     params.require(:wine).permit(:oenologist_id, :score)
+              end
 end
